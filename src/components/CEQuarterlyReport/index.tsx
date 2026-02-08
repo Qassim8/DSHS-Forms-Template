@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./style.css";
 import logo from "/logo.png";
 
 const CEQuarterlyReport = () => {
@@ -15,7 +14,7 @@ const CEQuarterlyReport = () => {
         <img src={logo} alt="Logo" className="header-logo" />
         <div className="header-text">
           <p>DEVELOPMENTAL DISABILITIES ADMINISTRATION (DDA)</p>
-          <h1>COMMUNITY ENGAGEMENT PROGRESS QUARTERLY REPORT</h1>
+          <h1>Community Engagement Quarterly Progress Report </h1>
         </div>
       </header>
 
