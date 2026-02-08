@@ -1,0 +1,214 @@
+.main-wrapper {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #fff;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.header-logo {
+  width: 150px;
+  height: auto;
+  position: absolute;
+  left: 0;
+}
+
+.header-text {
+  flex: 1;
+  text-align: center;
+}
+
+.header-text p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.header-text h1 {
+  margin: 5px 0 0 0;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #333;
+}
+
+.form-content-border {
+  border: 2px solid #333;
+  padding-top: 25px;
+  background-color: #fcfcfc;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding-inline: 20px;
+}
+
+.second-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding-inline: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 8px 0;
+  background: transparent;
+  outline: none;
+}
+
+.text-areas {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 20px;
+  margin-bottom: 20px;
+}
+
+.text-areas label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+textarea {
+  height: 90px;
+  margin-bottom: 25px;
+  border: 1px solid #999;
+  padding: 10px;
+  font-family: inherit;
+  resize: none;
+}
+
+.table-title {
+  padding-inline: 20px;
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-top: 1px solid #333;
+}
+
+.service-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 750px;
+}
+
+.service-table th,
+.service-table td {
+  border: 1px solid #333;
+  padding: 12px;
+}
+
+.service-table th {
+  background-color: #f4f4f4;
+  font-size: 12px;
+}
+
+.check {
+  font-size: 12px;
+}
+
+.sign-title {
+  padding: 12px 20px;
+  margin: 0;
+  background-color: #e2eefb;
+  border-top: 2px solid #333;
+  border-bottom: 1px solid #333;
+  font-size: 16px;
+}
+
+.grid-sig {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 767px) {
+  .grid-sig {
+    grid-template-columns: 1fr;
+  }
+}
+
+.signature-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+  gap: 30px;
+}
+
+.sig-box {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sig-box label {
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+.sig-input-file,
+.date-input {
+  border: none;
+  border-bottom: 1px dotted #000;
+  background: transparent;
+  padding: 5px 0;
+  font-size: 13px;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .info-grid,
+  .second-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-logo {
+    position: static;
+    margin: 0 auto 10px;
+    display: block;
+  }
+
+  .form-header {
+    flex-direction: column;
+  }
+
+  .signature-section {
+    max-width: 100%;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .main-wrapper {
+    padding: 10px;
+  }
+}
