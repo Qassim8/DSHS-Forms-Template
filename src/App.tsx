@@ -1,4 +1,5 @@
 import CEQuarterlyReport from "./components/CEQuarterlyReport";
+import IntialCEReport from "./components/InitialCEReport";
 import InitialSFCReport from "./components/InitialSFCReport";
 import SFCQuarterlyReport from "./components/SFCQuarterlyReport";
 import SHInitialReport from "./components/SHInitialReport";
@@ -12,6 +13,7 @@ function App() {
       <SFCQuarterlyReport />
       <InitialSFCReport />
       <SHInitialReport />
+      <IntialCEReport />
     </>
   );
 }
