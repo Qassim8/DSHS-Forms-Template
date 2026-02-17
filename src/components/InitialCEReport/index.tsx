@@ -8,6 +8,13 @@ const IntialCEReport = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const reportData = {
+    participantsName: "Louis Harry Noah",
+    providerName: "John Anderson",
+    caseManagerName: "Sarah Jenkins",
+    date: "02-10-2026",
+  };
+
   return (
     <div className="main-wrapper">
       <header className="form-header">
@@ -19,38 +26,49 @@ const IntialCEReport = () => {
       </header>
 
       <div className="form-content-border">
+        {/* Start Top Fields */}
         <section className="info-grid">
           <div className="input-group">
             <label>WAIVER PARTICIPANT'S NAME</label>
-            <input type="text" name="client_name" onChange={handleChange} />
+            <div className="input-group-content">
+              <div className="input-group-field"></div>
+              <div className="input-group-value">
+                / {reportData.participantsName}
+              </div>
+            </div>
           </div>
           <div className="input-group">
             <label>PROVIDER'S NAME</label>
-            <input
-              type="text"
-              name="case_manager_name"
-              onChange={handleChange}
-            />
+            <div className="input-group-content">
+              <div className="input-group-field"></div>
+              <div className="input-group-value">
+                / {reportData.providerName}
+              </div>
+            </div>
           </div>
         </section>
 
         <section className="info-grid">
           <div className="input-group">
             <label>CASE MANAGER'S NAME</label>
-            <input type="text" name="provider_name" onChange={handleChange} />
+            <div className="input-group-content">
+              <div className="input-group-field"></div>
+              <div className="input-group-value">
+                / {reportData.caseManagerName}
+              </div>
+            </div>
           </div>
           <div className="input-group">
             <label>DATE PLAN WAS WRITTEN OR REVISED</label>
-            <input
-              type="text"
-              name="report_date_range"
-              onChange={handleChange}
-            />
+            <div className="input-group-content">
+              <div className="input-group-field"></div>
+              <div className="input-group-value">/ {reportData.date}</div>
+            </div>
           </div>
         </section>
+        {/* End Top Fields */}
 
-        {/* Goals */}
-
+        {/* Start Goals */}
         <section className="goals-section">
           <div>
             <h3 className="goals-section-title">
@@ -188,6 +206,7 @@ const IntialCEReport = () => {
             </div>
           </div>
         </section>
+        {/* End Goals */}
 
         <section className="text-areas">
           <label>
@@ -195,45 +214,53 @@ const IntialCEReport = () => {
             with potential underlying medical, mental health, or educational
             support needs.
           </label>
-          <textarea name="describe" onChange={handleChange}></textarea>{" "}
         </section>
 
+        {/* Signatures  */}
         <footer>
           <h3 className="sign-title">Signatures</h3>
           <div className="grid-sig">
             <div className="signature-section">
               <div className="sig-box">
                 <label>PROVIDER'S SIGNATURE</label>
+                <div className="sig-field"></div>
               </div>
               <div className="sig-box">
                 <label>DATE</label>
+                <div className="sig-field"></div>
               </div>
             </div>
 
             <div className="signature-section">
               <div className="sig-box">
                 <label>LEGAL REPRESENTATIVE SIGNATURE </label>
+                <div className="sig-field"></div>
               </div>
               <div className="sig-box">
                 <label>DATE</label>
+                <div className="sig-field"></div>
               </div>
             </div>
 
             <div className="signature-section">
               <div className="sig-box">
                 <label>WAIVER PARTICIPANT'S SIGNATURE</label>
+                <div className="sig-field"></div>
               </div>
               <div className="sig-box">
                 <label>DATE</label>
+                <div className="sig-field"></div>
               </div>
             </div>
 
             <div className="signature-section">
               <div className="sig-box">
                 <label>DDA CASE / RESOURCE MANAGER'S SIGNATURE</label>
+                <div className="sig-field"></div>
               </div>
               <div className="sig-box">
                 <label>DATE</label>
+                <div className="sig-field"></div>
               </div>
             </div>
           </div>

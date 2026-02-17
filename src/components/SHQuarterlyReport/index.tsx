@@ -12,6 +12,15 @@ const SHQuarterlyReport = () => {
     });
   };
 
+  const reportData = {
+    clientName: "Louis Harry Noah",
+    caseManagerName: "Sarah Jenkins",
+    providerName: "John Anderson",
+    agencyName: "Elite Care Services LLC",
+    dateInitial: "11-10-2025 to 02-10-2026",
+    dateRange: "11-10-2025 to 02-10-2026",
+  };
+
   return (
     <div className="main-wrapper">
       <header className="form-header">
@@ -25,54 +34,64 @@ const SHQuarterlyReport = () => {
       </header>
 
       <div className="form-content-border">
+        {/* Start Top Fields */}
         <section className="info-grid">
           <div className="input-group">
             <label>CLIENT NAME</label>
-            <input type="text" name="client_name" onChange={handleChange} />
+            <div className="input-group-content">
+              <div className="input-group-field"></div>
+              <div className="input-group-value">/ {reportData.clientName}</div>
+            </div>
           </div>
           <div className="input-group">
             <label>CASE MANAGER NAME</label>
-            <input
-              type="text"
-              name="case_manager_name"
-              onChange={handleChange}
-            />
+            <div className="input-group-content">
+              <div className="input-group-field"></div>
+              <div className="input-group-value">
+                / {reportData.caseManagerName}
+              </div>
+            </div>
           </div>
         </section>
 
         <section className="info-grid">
           <div className="input-group">
             <label>PROVIDER NAME</label>
-            <input type="text" name="provider_name" onChange={handleChange} />
+            <div className="input-group-content">
+              <div className="input-group-field"></div>
+              <div className="input-group-value">
+                / {reportData.providerName}
+              </div>
+            </div>
           </div>
           <div className="input-group">
             <label>PROVIDER AGENCY NAME</label>
-            <input
-              type="text"
-              name="provider_agency_name"
-              onChange={handleChange}
-            />
+            <div className="input-group-content">
+              <div className="input-group-field"></div>
+              <div className="input-group-value">/ {reportData.agencyName}</div>
+            </div>
           </div>
         </section>
 
         <section className="info-grid">
           <div className="input-group">
             <label>DATE INITIAL PLAN WRITTEN OR REVISED</label>
-            <input
-              type="date"
-              name="initial_plan_date"
-              onChange={handleChange}
-            />
+            <div className="input-group-content">
+              <div className="input-group-field"></div>
+              <div className="input-group-value">
+                / {reportData.dateInitial}
+              </div>
+            </div>
           </div>
           <div className="input-group">
             <label>DATE RANGE FOR THIS REPORT </label>
-            <input
-              type="date"
-              name="report_range_date"
-              onChange={handleChange}
-            />
+            <div className="input-group-content">
+              <div className="input-group-field"></div>
+              <div className="input-group-value">/ {reportData.dateRange}</div>
+            </div>
           </div>
         </section>
+        {/* End Top Fields */}
 
         <section className="checkbox-section">
           <h3>
@@ -123,8 +142,7 @@ const SHQuarterlyReport = () => {
           </div>
         </section>
 
-        {/* Goals */}
-
+        {/* Start Goals */}
         <section className="goals-section">
           <div>
             <h3 className="goals-section-title">
@@ -223,29 +241,24 @@ const SHQuarterlyReport = () => {
                 Goal completion, using a scale from 1 – 10 (10 being goal is
                 met)
               </h3>
-              <div className="">
+              <div className="summarize-goals-goal">
                 <div className="summarize-goals">
                   <h4 className="goal-title">Goal 1:</h4>
-                  <div className="goal-text">
-                    <input type="text" />
-                  </div>
+                  <div className="goal-text"></div>
                 </div>
                 <div className="summarize-goals">
                   <h4 className="goal-title">Goal 2:</h4>
-                  <div className="goal-text">
-                    <input type="text" />
-                  </div>
+                  <div className="goal-text"></div>
                 </div>
                 <div className="summarize-goals">
                   <h4 className="goal-title">Goal 3:</h4>
-                  <div className="goal-text">
-                    <input type="text" />
-                  </div>
+                  <div className="goal-text"></div>
                 </div>
               </div>
             </div>
           </div>
         </section>
+        {/* End Goals */}
 
         <section className="text-areas">
           <label>
@@ -254,11 +267,12 @@ const SHQuarterlyReport = () => {
             support needs:
           </label>
           <textarea
-            name="goals_expectations"
+            name="referral_recommendations"
             onChange={handleChange}
-          ></textarea>{" "}
+          ></textarea>
         </section>
 
+        {/* Start Table */}
         <div className="table-wrapper">
           <table className="service-table">
             <thead>
@@ -270,14 +284,8 @@ const SHQuarterlyReport = () => {
             </thead>
             <tbody>
               {[...Array(5)].map((_, i) => (
-                <tr key={i}>
-                  <td>
-                    <input
-                      type="date"
-                      name={`row_date_${i}`}
-                      onChange={handleChange}
-                    />
-                  </td>
+                <tr key={i} className="table-fields">
+                  <td></td>
                   <td className="check">
                     <input
                       type="checkbox"
@@ -292,18 +300,13 @@ const SHQuarterlyReport = () => {
                     />{" "}
                     Teleservice
                   </td>
-                  <td>
-                    <input
-                      type="number"
-                      name={`row_time_${i}`}
-                      onChange={handleChange}
-                    />
-                  </td>
+                  <td></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        {/* End Table */}
 
         {/* Signtures */}
 
@@ -313,60 +316,33 @@ const SHQuarterlyReport = () => {
             <div className="signature-section">
               <div className="sig-box">
                 <label>CLIENT SIGNATURE</label>
-                <input
-                  type="file"
-                  name="client_signature_file"
-                  accept="image/*"
-                  onChange={handleChange}
-                />
+                <div className="sig-field"></div>
               </div>
               <div className="sig-box">
                 <label>DATE</label>
-                <input
-                  type="date"
-                  name="client_signature_date"
-                  onChange={handleChange}
-                />
+                <div className="sig-field"></div>
               </div>
             </div>
 
             <div className="signature-section">
               <div className="sig-box">
                 <label>LEGAL REPRESENTATIVE SIGNATURE </label>
-                <input
-                  type="file"
-                  name="legal_rep_signature_file"
-                  accept="image/*"
-                  onChange={handleChange}
-                />
+                <div className="sig-field"></div>
               </div>
               <div className="sig-box">
                 <label>DATE</label>
-                <input
-                  type="date"
-                  name="legal_rep_signature_date"
-                  onChange={handleChange}
-                />
+                <div className="sig-field"></div>
               </div>
             </div>
 
             <div className="signature-section">
               <div className="sig-box">
                 <label>PROVIDER SIGNATURE</label>
-                <input
-                  type="file"
-                  name="provider_signature_file"
-                  accept="image/*"
-                  onChange={handleChange}
-                />
+                <div className="sig-field"></div>
               </div>
               <div className="sig-box">
                 <label>DATE</label>
-                <input
-                  type="date"
-                  name="provider_signature_date"
-                  onChange={handleChange}
-                />
+                <div className="sig-field"></div>
               </div>
             </div>
           </div>
