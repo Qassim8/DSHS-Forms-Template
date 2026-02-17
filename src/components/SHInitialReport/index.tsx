@@ -224,7 +224,12 @@ const SHInitialReport = () => {
            Referral Recommendations
         ========================= */}
         <section className="text-areas">
-          <label>Referral recommendations</label>
+          <label>
+            List referral recommendations if the client presents with potential
+            underlying medical, mental health, or educational support needs
+            (referral may be to Care Coordinator, treating professional, or
+            DDA):
+          </label>
 
           {/* Printable value */}
           <div className="print-text-block">
