@@ -1,28 +1,63 @@
 import { useState } from "react";
 import logo from "/logo.png";
 
+/* =========================
+   Types
+========================= */
+type ReportData = {
+  clientName: string;
+  caseManagerName: string;
+  providerName: string;
+  agencyName: string;
+  dateInitial: string;
+  dateRange: string;
+
+  referralRecommendations: string;
+};
+
+/* =========================
+   Mock Values
+========================= */
+const reportData: ReportData = {
+  clientName: "Louis Harry Noah",
+  caseManagerName: "Sarah Jenkins",
+  providerName: "John Anderson",
+  agencyName: "Elite Care Services LLC",
+  dateInitial: "11-10-2025",
+  dateRange: "11-10-2025 to 02-10-2026",
+
+  referralRecommendations:
+    "Recommend speech therapy evaluation and vocational assessment.",
+};
+
 const SHQuarterlyReport = () => {
-  const [formData, setFormData] = useState({});
+  /* =========================
+     State
+  ========================= */
+  const [formData, setFormData] = useState<Record<string, string | boolean>>(
+    {},
+  );
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+  /* =========================
+      change handler
+  ========================= */
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, type } = e.target;
+    const value =
+      type === "checkbox"
+        ? (e.target as HTMLInputElement).checked
+        : e.target.value;
 
-  const reportData = {
-    clientName: "Louis Harry Noah",
-    caseManagerName: "Sarah Jenkins",
-    providerName: "John Anderson",
-    agencyName: "Elite Care Services LLC",
-    dateInitial: "11-10-2025 to 02-10-2026",
-    dateRange: "11-10-2025 to 02-10-2026",
+    setFormData({ ...formData, [name]: value });
   };
 
   return (
     <div className="main-wrapper">
+      {/* =========================
+         Header
+      ========================= */}
       <header className="form-header">
         <img src={logo} alt="Logo" className="header-logo" />
         <div className="header-text">
@@ -34,7 +69,9 @@ const SHQuarterlyReport = () => {
       </header>
 
       <div className="form-content-border">
-        {/* Start Top Fields */}
+        {/* =========================
+         Start Top Fields
+      ========================= */}
         <section className="info-grid">
           <div className="input-group">
             <label>CLIENT NAME</label>
@@ -91,7 +128,9 @@ const SHQuarterlyReport = () => {
             </div>
           </div>
         </section>
-        {/* End Top Fields */}
+        {/* =========================
+         End Top Fields
+      ========================= */}
 
         <section className="checkbox-section">
           <h3>
@@ -142,7 +181,9 @@ const SHQuarterlyReport = () => {
           </div>
         </section>
 
-        {/* Start Goals */}
+        {/* =========================
+         Start Goals
+      ========================= */}
         <section className="goals-section">
           <div>
             <h3 className="goals-section-title">
@@ -258,7 +299,9 @@ const SHQuarterlyReport = () => {
             </div>
           </div>
         </section>
-        {/* End Goals */}
+        {/* =========================
+         End Goals
+      ========================= */}
 
         <section className="text-areas">
           <label>
@@ -266,13 +309,18 @@ const SHQuarterlyReport = () => {
             with potential underlying medical, mental health, or educational
             support needs:
           </label>
+          <div className="print-text-block">
+            {reportData.referralRecommendations}
+          </div>
           <textarea
             name="referral_recommendations"
             onChange={handleChange}
           ></textarea>
         </section>
 
-        {/* Start Table */}
+        {/* =========================
+         Start Table
+      ========================= */}
         <div className="table-wrapper">
           <table className="service-table">
             <thead>
@@ -306,10 +354,13 @@ const SHQuarterlyReport = () => {
             </tbody>
           </table>
         </div>
-        {/* End Table */}
+        {/* =========================
+         End Table
+      ========================= */}
 
-        {/* Signtures */}
-
+        {/* =========================
+         Signatures
+      ========================= */}
         <footer>
           <h3 className="sign-title">Signatures</h3>
           <div className="grid-sig">

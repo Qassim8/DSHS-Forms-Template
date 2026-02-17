@@ -1,28 +1,78 @@
 import { useState } from "react";
 import logo from "/logo.png";
 
+/* =========================
+   Types
+========================= */
+
+type ReportData = {
+  clientName: string;
+  caseManagerName: string;
+  providerName: string;
+  agencyName: string;
+  dateInitial: string;
+  dateRange: string;
+
+  sfcGoalSummary: string;
+  describeSupport: string;
+  therapistCommunicationNote: string;
+  barriersAndChanges: string;
+  referralsSummary: string;
+};
+
+/* =========================
+   Mock Printable Values
+   (Prepared for binding by next developer)
+========================= */
+
+const reportData: ReportData = {
+  clientName: "Louis Harry Noah",
+  caseManagerName: "Sarah Jenkins",
+  providerName: "John Anderson",
+  agencyName: "Elite Care Services LLC",
+  dateInitial: "11-10-2025 to 02-10-2026",
+  dateRange: "11-10-2025 to 02-10-2026",
+
+  sfcGoalSummary:
+    "Family member is improving structured support techniques and consistency of behavioral response.",
+  describeSupport:
+    "Consultant provided modeling and live observation feedback during sessions.",
+  therapistCommunicationNote:
+    "New sleep pattern concerns reported and should be shared with therapist.",
+  barriersAndChanges:
+    "Limited availability of caregiver during weekdays — schedule adjustment recommended.",
+  referralsSummary:
+    "Referral to local caregiver support network provided last month.",
+};
+
 const SFCQuarterlyReport = () => {
-  const [formData, setFormData] = useState({});
+  /* =========================
+     State 
+  ========================= */
+  const [formData, setFormData] = useState<Record<string, string | boolean>>(
+    {},
+  );
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+  /* =========================
+     change handler
+  ========================= */
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, type } = e.target;
+    const value =
+      type === "checkbox"
+        ? (e.target as HTMLInputElement).checked
+        : e.target.value;
 
-  const reportData = {
-    clientName: "Louis Harry Noah",
-    caseManagerName: "Sarah Jenkins",
-    providerName: "John Anderson",
-    agencyName: "Elite Care Services LLC",
-    dateInitial: "11-10-2025 to 02-10-2026",
-    dateRange: "11-10-2025 to 02-10-2026",
+    setFormData({ ...formData, [name]: value });
   };
 
   return (
-    <div className="main-wrapper">
+    <div className="main-wrapper" data-mode="print">
+      {/* =========================
+         Header
+      ========================= */}
       <header className="form-header">
         <img src={logo} alt="Logo" className="header-logo" />
         <div className="header-text">
@@ -37,19 +87,24 @@ const SFCQuarterlyReport = () => {
       </header>
 
       <div className="form-content-border">
-        {/* Start Top Fields */}
+        {/* =========================
+           Top Fields
+        ========================= */}
         <section className="info-grid">
+          {/* Client */}
           <div className="input-group">
             <label>CLIENT NAME</label>
             <div className="input-group-content">
-              <div className="input-group-field"></div>
+              <div className="input-group-field" />
               <div className="input-group-value">/ {reportData.clientName}</div>
             </div>
           </div>
+
+          {/* Case Manager */}
           <div className="input-group">
             <label>CASE MANAGER NAME</label>
             <div className="input-group-content">
-              <div className="input-group-field"></div>
+              <div className="input-group-field" />
               <div className="input-group-value">
                 / {reportData.caseManagerName}
               </div>
@@ -58,219 +113,218 @@ const SFCQuarterlyReport = () => {
         </section>
 
         <section className="info-grid">
+          {/* Provider */}
           <div className="input-group">
             <label>PROVIDER NAME</label>
             <div className="input-group-content">
-              <div className="input-group-field"></div>
+              <div className="input-group-field" />
               <div className="input-group-value">
                 / {reportData.providerName}
               </div>
             </div>
           </div>
+
+          {/* Agency */}
           <div className="input-group">
             <label>PROVIDER AGENCY NAME</label>
             <div className="input-group-content">
-              <div className="input-group-field"></div>
+              <div className="input-group-field" />
               <div className="input-group-value">/ {reportData.agencyName}</div>
             </div>
           </div>
         </section>
 
         <section className="info-grid">
+          {/* Initial Plan Date */}
           <div className="input-group">
             <label>DATE INITIAL PLAN WRITTEN OR REVISED</label>
             <div className="input-group-content">
-              <div className="input-group-field"></div>
+              <div className="input-group-field" />
               <div className="input-group-value">
                 / {reportData.dateInitial}
               </div>
             </div>
           </div>
+
+          {/* Range */}
           <div className="input-group">
-            <label>DATE RANGE FOR THIS REPORT </label>
+            <label>DATE RANGE FOR THIS REPORT</label>
             <div className="input-group-content">
-              <div className="input-group-field"></div>
+              <div className="input-group-field" />
               <div className="input-group-value">/ {reportData.dateRange}</div>
             </div>
           </div>
         </section>
-        {/* End Top Fields */}
 
+        {/* =========================
+           Goal & Progress Summary
+        ========================= */}
         <section className="text-areas">
           <label>
-            Staff or Family (S/F) member consultation goal and summary of their
-            progress in the last 90 days:
+            Staff or Family (S/F) consultation goal and progress summary:
           </label>
-          <textarea
-            name="goals_expectations"
-            onChange={handleChange}
-          ></textarea>
+
+          {/* Printable value */}
+          <div className="print-text-block">{reportData.sfcGoalSummary}</div>
+
+          {/* Editable fallback */}
+          <textarea name="sfcGoalSummary" onChange={handleChange} />
         </section>
 
+        {/* =========================
+            Checkbox Section
+        ========================= */}
         <section className="checkbox-section">
-          <h3>
-            Needed support to assist S/F in working toward their goal: check all
-            that apply.
-          </h3>
+          <h3>Needed support to assist S/F in working toward their goal:</h3>
+
           <div className="checkbox-grid">
-            <label>
-              <input
-                type="checkbox"
-                name="cat_self_empowerment"
-                onChange={handleChange}
-              />{" "}
-              Observation of S/F member actions
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="cat_safety_awareness"
-                onChange={handleChange}
-              />{" "}
-              Modeling appropriate techniques to S/F
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="cat_interpersonal"
-                onChange={handleChange}
-              />{" "}
-              Phone Consultation
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="cat_coping_strategies"
-                onChange={handleChange}
-              />{" "}
-              Referral to family support group or advocacy organization
-            </label>
+            {/* Static printable checklist — editable fallback included */}
+            {[
+              ["Observation of S/F member actions", "support_observation"],
+              ["Modeling appropriate techniques", "support_modeling"],
+              ["Phone Consultation", "support_phone"],
+              ["Referral to support group", "support_referral"],
+            ].map(([label, name]) => (
+              <label key={name}>
+                <input type="checkbox" name={name} onChange={handleChange} />
+                {label}
+              </label>
+            ))}
           </div>
         </section>
 
+        {/* =========================
+           Describe Support
+        ========================= */}
         <section className="text-areas">
           <label>Describe:</label>
-          <textarea
-            name="goals_expectations"
-            onChange={handleChange}
-          ></textarea>
+
+          <div className="print-text-block">{reportData.describeSupport}</div>
+
+          <textarea name="describeSupport" onChange={handleChange} />
         </section>
 
+        {/* =========================
+           Therapist Communication
+        ========================= */}
         <section className="text-areas">
           <p>
-            if the client has a current therapeutic plan in which the
-            consultation is being provided on, are there new needs the family or
-            staff member is reporting that should be communicated to the
-            therapist?{" "}
+            Are there new needs that should be communicated to the therapist?
           </p>
+
+          {/* Yes / No editable fallback */}
           <span className="text-small">
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              name="therapist_yes"
+              onChange={handleChange}
+            />
             Yes
           </span>
+
           <span className="text-small">
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              name="therapist_no"
+              onChange={handleChange}
+            />
             No
           </span>
-          <label>if yes, please briefly explain:</label>
-          <textarea
-            name="goals_expectations"
-            onChange={handleChange}
-          ></textarea>
+
+          <label>If yes, explain:</label>
+
+          <div className="print-text-block">
+            {reportData.therapistCommunicationNote}
+          </div>
+
+          <textarea name="therapistCommunicationNote" onChange={handleChange} />
         </section>
 
+        {/* =========================
+           Barriers & Plan Changes
+        ========================= */}
         <section className="text-areas">
-          <label>
-            Barriers to the staff or family member meeting their goal(s) /
-            recommended changes to the Initial Plan:
-          </label>
-          <textarea name="goals_plan" onChange={handleChange}></textarea>
+          <label>Barriers and recommended plan changes:</label>
+
+          <div className="print-text-block">
+            {reportData.barriersAndChanges}
+          </div>
+
+          <textarea name="barriersAndChanges" onChange={handleChange} />
         </section>
 
+        {/* =========================
+           Referrals Summary
+        ========================= */}
         <section className="text-areas">
-          <label>
-            Referrals provided since the last report, in the last 90 days, or
-            significant change in client presentation observed in the last 90
-            days (include date of referral, if applicable):
-          </label>
-          <textarea
-            name="goals_expectations"
-            onChange={handleChange}
-          ></textarea>
+          <label>Referrals provided or significant changes observed:</label>
+
+          <div className="print-text-block">{reportData.referralsSummary}</div>
+
+          <textarea name="referralsSummary" onChange={handleChange} />
         </section>
 
-        {/* Start Table */}
+        {/* =========================
+           Service Table
+        ========================= */}
         <div className="table-wrapper">
           <table className="service-table">
             <thead>
               <tr>
                 <th>DATE</th>
-                <th>SERVICE DELIVERY (CHECK DELIVERY METHOD) </th>
-                <th>TIME SPENT (IN 15 MINUTES) </th>
+                <th>SERVICE DELIVERY (CHECK DELIVERY METHOD)</th>
+                <th>TIME SPENT (IN 15 MINUTES)</th>
               </tr>
             </thead>
+
             <tbody>
+              {/* Static printable rows — next developer may bind data */}
               {[...Array(5)].map((_, i) => (
                 <tr key={i} className="table-fields">
                   <td></td>
+
                   <td className="check">
                     <input
                       type="checkbox"
-                      name={`delivery_person_${i}`}
+                      name={`service_${i}_inPerson`}
                       onChange={handleChange}
-                    />{" "}
+                    />
                     In person
                     <input
                       type="checkbox"
-                      name={`delivery_tele_${i}`}
+                      name={`service_${i}_tele`}
                       onChange={handleChange}
-                    />{" "}
+                    />
                     Teleservice
                   </td>
+
                   <td></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        {/* End Table */}
 
-        {/* Signtures */}
-
+        {/* =========================
+           Signatures
+        ========================= */}
         <footer>
           <h3 className="sign-title">Signatures</h3>
+
           <div className="grid-sig">
-            <div className="signature-section">
-              <div className="sig-box">
-                <label>CLIENT SIGNATURE</label>
-                <div className="sig-field"></div>
-              </div>
-              <div className="sig-box">
-                <label>DATE</label>
-                <div className="sig-field"></div>
-              </div>
-            </div>
+            {["CLIENT", "LEGAL REPRESENTATIVE", "PROVIDER"].map((role) => (
+              <div className="signature-section" key={role}>
+                <div className="sig-box">
+                  <label>{role} SIGNATURE</label>
+                  <div className="sig-field"></div>
+                </div>
 
-            <div className="signature-section">
-              <div className="sig-box">
-                <label>LEGAL REPRESENTATIVE SIGNATURE </label>
-                <div className="sig-field"></div>
+                <div className="sig-box">
+                  <label>DATE</label>
+                  <div className="sig-field"></div>
+                </div>
               </div>
-              <div className="sig-box">
-                <label>DATE</label>
-                <div className="sig-field"></div>
-              </div>
-            </div>
-
-            <div className="signature-section">
-              <div className="sig-box">
-                <label>PROVIDER SIGNATURE</label>
-                <div className="sig-field"></div>
-              </div>
-              <div className="sig-box">
-                <label>DATE</label>
-                <div className="sig-field"></div>
-              </div>
-            </div>
+            ))}
           </div>
         </footer>
       </div>
